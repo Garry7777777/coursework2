@@ -18,10 +18,13 @@ public class Main {
         taskService.add(monthlyTask);
         taskService.add(weeklyTask);
         taskService.add(dailyTask);
-        //удаляем
-        if ( taskService.remove(1) == null) throw new IncorrectArgumentException( " id ");
+
+        // удаляем
+        if (taskService.remove(1) == null) throw new IncorrectArgumentException( " id ");
+
         // через неделю
         System.out.println(taskService.getAllByDate(LocalDate.parse("2023-02-01")));
+
         // через год
         System.out.println(taskService.getAllByDate(LocalDate.parse("2024-01-25")));
     }

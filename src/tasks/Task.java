@@ -8,30 +8,38 @@ import java.util.Objects;
 public abstract class Task {
 
     private static int idGenerator;
-    String title;
+    private String title;
     private final Type type;
     private final int id;
     private LocalDateTime dateTime;
-    String description;
+    private String description;
 
     public Task(Type type, String title,  String dateTime,  String description) throws IncorrectArgumentException {
         this.id = idGenerator++;
         this.type = type;
-        if(title == null || title.isEmpty()) throw new IncorrectArgumentException( " title ");
-            else this.title = title;
+        setTitle(title);
         this.dateTime = LocalDateTime.parse(LocalDate.parse(dateTime)+ "T00:00");
-        if (description == null || description.isEmpty()) throw new IncorrectArgumentException( " description ");
-            else  this.description = description;
+        setDescription(description);
     }
 
+    public void setTitle(String title) throws IncorrectArgumentException {
+        if(title == null || title.isEmpty() || title.isBlank())
+            throw new IncorrectArgumentException( " title ");
+        else this.title = title;
+    }
+    public void setDescription(String description) throws IncorrectArgumentException {
+        if (description == null || description.isEmpty() || description.isBlank())
+            throw new IncorrectArgumentException( " description ");
+        else  this.description = description;
+    }
     public Integer getId() {return id;}
     public Type getType() {return type;}
-    public void setTitle(String title) {this.title = title;}
     public String getTitle() { return title; }
-    public void setDescription(String description) {this.description = description;}
     public String getDescription()  { return description; }
     public LocalDateTime getDateTime() { return dateTime; }
     public void setDateTime(LocalDateTime dateTime) {this.dateTime = dateTime;}
+    public abstract boolean appearsIn(LocalDate localDate);
+
 
     @Override
     public boolean equals(Object o) {
@@ -54,5 +62,5 @@ public abstract class Task {
                 ", description='" + description + '\'' +
                 '}';
     }
-    public abstract boolean appearsIn(LocalDate localDate);
+
 }
