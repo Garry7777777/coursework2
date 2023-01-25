@@ -24,6 +24,5 @@ public class Main {
         System.out.println(taskService.getAllByDate(LocalDate.parse("2023-02-01")));
         // через год
         System.out.println(taskService.getAllByDate(LocalDate.parse("2024-01-25")));
-
     }
 }

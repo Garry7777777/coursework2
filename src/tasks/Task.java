@@ -14,7 +14,6 @@ public abstract class Task {
     private LocalDateTime dateTime;
     String description;
 
-
     public Task(Type type, String title,  String dateTime,  String description) throws IncorrectArgumentException {
         this.id = idGenerator++;
         this.type = type;
